@@ -1,1 +1,33 @@
-
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+    <header>ID : <br> PW: </header>
+    
+    <div class="container">
+        <sidebar>si</sidebar>
+        <main>
+            <div class="calendar">
+                <div class="month"></div>
+                <div class="month"></div>
+                <div class="month"></div>
+                <div class="month"></div>
+                <div class="month"></div>
+                <div class="month"></div>
+                <div class="month"></div>
+                <div class="month"></div>
+                <div class="month"></div>
+                <div class="month"></div>
+                <div class="month"></div>
+                <div class="month"></div>
+            </div>
+        </main>
+    </div>
+        
+    <footer>foote1r</footer>
+</body>
+</html>
