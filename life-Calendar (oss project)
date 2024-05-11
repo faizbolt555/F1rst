@@ -14,7 +14,7 @@
     </pre>                 
     </header>
     <div class="container">
-        <sidebar>si</sidebar>
+        <sidebar>사이드바</sidebar>
         <main>
             <div class="calendar">
                 <div class="month"></div>
@@ -33,6 +33,6 @@
         </main>
     </div>
         
-    <footer>foote1r</footer>
+    <footer>footer</footer>
 </body>
 </html>
