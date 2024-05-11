@@ -10,7 +10,7 @@
     <header>
         <img src="" alt = "로고 이미지" style = "float: left; margin-right: 15px;">
         <p style="text-align: right;">로그인  회원가입 </p>  
-        <p style="text-align: center;">홈 ABOUT </p>
+        <p style="text-align: center;">홈 &nbsp;&nbsp;&nbsp;ABOUT </p>
     </header>
     <div class="container">
         <sidebar>사이드바</sidebar>
