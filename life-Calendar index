@@ -8,10 +8,9 @@
 <body>
 <body>
     <header>
-    <pre>
-                                                                    로그인          회원가입
-    로고                                홈          ABOUT                                                
-    </pre>                 
+        <img src="" alt = "로고 이미지" style = "float: left; margin-right: 15px;">
+        <p style="text-align: right;">로그인  회원가입 </p>  
+        <p style="text-align: center;">홈 ABOUT </p>
     </header>
     <div class="container">
         <sidebar>사이드바</sidebar>
