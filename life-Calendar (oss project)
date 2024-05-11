@@ -6,8 +6,13 @@
     <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
-    <header>ID : <br> PW: </header>
-    
+<body>
+    <header>
+    <pre>
+                                                                    로그인          회원가입
+    로고                                홈          ABOUT                                                
+    </pre>                 
+    </header>
     <div class="container">
         <sidebar>si</sidebar>
         <main>
