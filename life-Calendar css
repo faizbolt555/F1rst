@@ -1,3 +1,9 @@
+body {
+    max-width: 4800px;
+    min-width: 4800px;
+    margin: auto;
+}
+
 header, sidebar, main, footer {
     box-sizing: border-box;
     font-size: 30px;
@@ -7,20 +13,42 @@ header, sidebar, main, footer {
 
 header {
     width: 100%;
-    height: 150px;
+    height: 300px;
     margin-bottom: 30px;
+}
+
+#logo {
+    width: 1100px;
+    height: auto;
+    float: left;
+    padding-left: 50px;
+}
+.login-signup {
+    font-size: 100px;
+    height: auto;
+    text-align: right;
+    justify-content: center;
+    line-height: 1px;
+}
+
+.home-about {
+    font-size: 100px;
+    height: auto;
+    text-align: center;
+    justify-content: center;
+    line-height: 1px;
 }
 
 sidebar { 
     width: 20%;
-    height: 2400px;
+    height: 3600px;
     float: left;
     margin-bottom: 30px;
 }
 
 main {
-    width: 75%;
-    height: 2400px;
+    width: 70%;
+    height: 3600px;
     float: right;
 }
 
@@ -32,9 +60,17 @@ footer {
 }
 
 
+.indicator-date {
+    width: 100%;
+    height: 5%;
+    border-bottom: 1px solid black;
+    text-align: center;
+    line-height: 160px;
+    font-size: 80px;
+}
 
 .calendar {
-    height: 100%;
+    height: 95%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
@@ -47,14 +83,17 @@ footer {
 
 .month-name {
     width: 100%;
+    height: 120px;
     font-weight: bold;
-    padding: 5px;
+    font-size: 80px;
     text-align: center;
+    border-bottom: 1px solid black;
 }
 
 .days-container {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(5, minmax(120px, 1fr));
     grid-gap: 10px;
     padding: 10px;
 }
@@ -62,7 +101,9 @@ footer {
 .day {
     border: 1px solid black;
     text-align: center;
+    font-size: 50px;
     padding: 10px;
+    line-height: 95px;
 }
 
 .day:hover {
@@ -70,9 +111,10 @@ footer {
 }
 
 .day:active {
-    background-color: aliceblue;
+    background-color: rgb(233, 245, 255);
 }
 
 .selected {
     background-color: skyblue;
 }
+
