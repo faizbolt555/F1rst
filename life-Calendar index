@@ -8,26 +8,26 @@
 </head>
 <body>
     <header>
-        <img src="C:\Users\USER\Desktop\life-calendar.png" alt="로고 이미지" style="float: left; margin-right: 15px;">
-        <p style="text-align: right;">
+        <img src="image/로고.png" alt = "로고 이미지" id="logo">
+        <p class="login-signup">
             <a href="#">로그인</a>
-            <a href="#">회원가입</a>     
-            </p>
-        <p style="text-align: center;">
-            <a href="#">홈</a>&nbsp;&nbsp;&nbsp;
-            <a href="#">ABOUT</a>
-            </p>
-        <select style="float: right;">
+            <a href="#">회원가입</a>
+        </p>
+        <p class="home-about">
+            <a href="#">Home</a>&nbsp;&nbsp;&nbsp;
+            <a href="#">About</a>
+        </p>
+        <select id="languageSelect" style="float: right; width: 200px; height: 50px; font-size: 20px;">
             <option> 한국어</option>
             <option> English</option>
             <option> 日本語</option>
-        </select>                                                     
+        </select>
     </header>
-
-
+    
     <div class="container">
-        <sidebar>사이드바</sidebar>
+        <sidebar>sidebar</sidebar>
         <main>
+            <div class="indicator-date"></div>
             <div class="calendar">
                 <div class="month"></div>
                 <div class="month"></div>
@@ -45,10 +45,6 @@
         </main>
     </div>
         
-    <footer>footer</footer>
-</body>
-</html>
-        
-    <footer>footer</footer>
+    <footer>foote1r</footer>
 </body>
 </html>
