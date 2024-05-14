@@ -1,31 +1,51 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>Life Calendar</title>
     <link rel="stylesheet" href="stylesheet.css">
     <script src="javascript.js"></script>
 </head>
+
 <body>
     <header>
-        <img src="image/로고.png" alt = "로고 이미지" id="logo">
-        <p class="login-signup">
-            <a href="#">로그인</a>
-            <a href="#">회원가입</a>
-        </p>
-        <p class="home-about">
-            <a href="#">Home</a>&nbsp;&nbsp;&nbsp;
-            <a href="#">About</a>
-        </p>
-        <select id="languageSelect" style="float: right; width: 200px; height: 50px; font-size: 20px;">
-            <option> 한국어</option>
-            <option> English</option>
-            <option> 日本語</option>
-        </select>
+        <a href="/">
+            <img class="logo" src="image/로고.png" alt="로고 이미지" >
+        </a>
+
+        <div class="nav-container">
+            <ul class="nav-list">
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>
+                    <a href="/">ABOUT</a>
+                </li>
+                <li>
+                    <a href="/">로그인</a>
+                </li>
+                <li>
+                    <a href="/">회원가입</a>
+                </li>
+            </ul>
+        </div>
     </header>
-    
+
     <div class="container">
-        <sidebar>sidebar</sidebar>
+        <sidebar>
+            <div id="select-day">날짜 선택</div>
+            <div id="selected-color"></div>
+            <div id="color-picker">
+                <div class="color-select"></div>
+                <div class="color-option" id="red"></div>
+                <div class="color-option" id="orange"></div>
+                <div class="color-option" id="yellow"></div>
+                <div class="color-option" id="green"></div>
+                <div class="color-option" id="blue"></div>
+                <div class="color-option" id="indigo"></div>
+                <div class="color-option" id="violet"></div>
+        </sidebar>
         <main>
             <div class="indicator-date"></div>
             <div class="calendar">
