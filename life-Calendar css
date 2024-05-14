@@ -54,6 +54,25 @@ sidebar {
     margin-bottom: 30px;
 }
 
+.opacity-button{
+    height: 2%;
+    text-align: center;
+}
+
+.opacity{
+    height: 5%;
+    display: flex;
+}
+
+.button{
+    border: 1px solid black;
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 14px;
+    padding: 50px;
+}
+
 main {
     width: 70%;
     height: 3600px;
@@ -168,15 +187,6 @@ main {
     transform: scale(1.2);
 }
 
-.slidecontainer {
-    text-align: center;
-}
-
-.slider{ 
-    width: 80%;
-    height: 100px;
-    margin-top: 50px;
-}
 
 footer {
     width: 100%;
@@ -189,5 +199,3 @@ footer {
     font-size: 45px;
     line-height: 200px;
 }
-
-
