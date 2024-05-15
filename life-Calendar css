@@ -54,12 +54,8 @@ sidebar {
     margin-bottom: 30px;
 }
 
-.opacity-button{
-    height: 2%;
-    text-align: center;
-}
-
 .opacity{
+    gap: 15px;
     height: 5%;
     display: flex;
 }
@@ -69,8 +65,9 @@ sidebar {
     text-align: center;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    grid-gap: 14px;
     padding: 50px;
+    grid-gap: 12px;
+    border-radius: 50%;
 }
 
 main {
