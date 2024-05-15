@@ -139,7 +139,7 @@ function colorPickerEvent() {
     const selectedColor = document.getElementById('selected-color');
     const colorPicker = document.getElementById('color-picker');
     const opacityButton = document.querySelector('.opacity');
-    const opacityContainer = document.querySelector('.button');
+    
     // 선택한 색상을 selected-color에 반영하는 함수
     function setSelectedColor(color) {
         selectedColor.style.backgroundColor = color;
@@ -173,6 +173,7 @@ function colorPickerEvent() {
             const color = option.id;
             setSelectedColor(color);
             toggleColorPicker();
+            toggleopacityButton();
             colorEffect(color)
         });
     });
@@ -182,16 +183,6 @@ function colorPickerEvent() {
     opacityButton.style.display = 'none';
 }
 
-
-
-// 투명도 설정 함수
-function setOpacity(color, opacity) {
-    const selectedColor = document.getElementById('selected-color');
-    selectedColor.style.backgroundColor = `rgba(${color}, ${opacity})`;
-    
-}
-  
-
 // 함수 실행 부분들
 document.addEventListener('DOMContentLoaded', () => {
     updateTime();
@@ -199,5 +190,4 @@ document.addEventListener('DOMContentLoaded', () => {
     generateDaysForMonth(new Date().getFullYear()); //초기에는 한국어로 설정
     appendSelected();
     colorPickerEvent();
-    setOpacity();
 });
