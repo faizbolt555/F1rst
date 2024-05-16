@@ -15,15 +15,15 @@ function isLeapYear(year) {
 // 각 월마다 날짜 생성 
 function generateDaysForMonth(year) {
     const months = [
-        { month: '1월',  days: 31 },
-        { month: '2월',  days: isLeapYear(year) ? 29 : 28 },
-        { month: '3월',  days: 31 },
-        { month: '4월',  days: 30 },
-        { month: '5월',  days: 31 },
-        { month: '6월',  days: 30 },
-        { month: '7월',  days: 31 },
-        { month: '8월',  days: 31 },
-        { month: '9월',  days: 30 },
+        { month: '1월', days: 31 },
+        { month: '2월', days: isLeapYear(year) ? 29 : 28 },
+        { month: '3월', days: 31 },
+        { month: '4월', days: 30 },
+        { month: '5월', days: 31 },
+        { month: '6월', days: 30 },
+        { month: '7월', days: 31 },
+        { month: '8월', days: 31 },
+        { month: '9월', days: 30 },
         { month: '10월', days: 31 },
         { month: '11월', days: 30 },
         { month: '12월', days: 31 }
@@ -47,6 +47,7 @@ function generateDaysForMonth(year) {
             const dayDiv = document.createElement('div');
             dayDiv.className = 'day';
             dayDiv.textContent = day;
+            dayDiv.dataset.constant = '';
             daysContainer.appendChild(dayDiv);
         }
 
@@ -62,20 +63,16 @@ function appendSelected() {
 
     // 각 날짜 요소에 이벤트 리스너 추가
     const days = document.querySelectorAll('.day');
-    const selectedColor = document.getElementById('selected-color'); // selectedColor 요소 선택
     const sidebar = document.getElementById('select-day'); // sidebar 요소 선택
     days.forEach(day => {
         day.addEventListener('click', () => {
+
             // 선택한 날짜를 업데이트하고 이전 선택을 취소
             if (selectedDay) {
                 selectedDay.classList.remove('selected');
             }
             selectedDay = day;
             selectedDay.classList.add('selected');
-
-            // 선택한 날짜가 있을 때 selectedColor를 보여줌
-            selectedColor.style.display = 'block';
-
             // sidebar에 선택한 날짜 추가
             const monthName = selectedDay.parentElement.parentElement.querySelector('.month-name').textContent;
             sidebar.textContent = `${monthName} ${selectedDay.textContent}일`;
@@ -122,49 +119,98 @@ function colorEffect(color) {
 
     // 모든 day 클래스를 가진 요소에 대해 반복문을 실행합니다.
     allDays.forEach(function (day) {
-
-        // 선택된 요소에만 color-effect 클래스를 추가합니다.
-        if (day.classList.contains('selected')) {
-            day.classList.add('color-effect');
-        }
-
         if (day.classList.contains('color-effect')) {
-            day.style.backgroundColor = color; // 색상 변경
+            const shadowID = day.dataset.constant;
+            const alpha = alphaValue(shadowID);
+            day.style.backgroundColor = shadeCalc(color, alpha);
         }
     });
 }
 
+function colorEffectShadow(color, id) {
+    const allDays = document.querySelectorAll('.day');
+
+    // 모든 day 클래스를 가진 요소에 대해 반복문을 실행합니다.
+    allDays.forEach(function (day) {
+
+        // 선택된 요소에만 color-effect 클래스를 추가합니다.
+        if (day.classList.contains('selected')) {
+            day.classList.add('color-effect');
+            day.style.backgroundColor = color;
+            day.dataset.constant = id
+        }
+    });
+}
+
+// shadow강도에 따른 숫자값 반환
+function alphaValue(id) {
+    const alpha = {
+        'shadow-100': 1,
+        'shadow-75': 0.75,
+        'shadow-50': 0.5,
+        'shadow-40': 0.4,
+        'shadow-30': 0.3,
+    }
+    return alpha[id];
+}
+
+function setSelectedColor(color) {
+    const selectedColor = document.querySelector('.selected-color');
+    selectedColor.style.backgroundColor = color;
+}
+
+function colorMap(color) {
+    const colorMaps = {
+        'red': '#ff0000',
+        'orange': '#ffa500',
+        'yellow': '#ffff00',
+        'green': '#20a020',
+        'turquoise': '#40e0d0',
+        'blue': '#0000ff',
+        'purple': '#ee82ee',
+        'gray': '#b0b0b0',
+    };
+    return colorMaps[color];
+}
+
+// 명암 계산
+function shadeCalc(color, alpha) {
+    const rgb = hexToRgb(colorMap(color));
+    return `rgb(${Math.round(rgb.r * alpha)}, ${Math.round(rgb.g * alpha)}, ${Math.round(rgb.b * alpha)})`
+}
+
+function setShadowColor(color) {
+
+
+    // 입력된 색상에서 RGB 값 추출
+    const rgb = hexToRgb(colorMap(color));
+
+    // 각 명암 요소에 색상 적용
+    document.getElementById('shadow-100').style.backgroundColor = shadeCalc(color, 1);
+    document.getElementById('shadow-75').style.backgroundColor = shadeCalc(color, 0.75);
+    document.getElementById('shadow-50').style.backgroundColor = shadeCalc(color, 0.5);
+    document.getElementById('shadow-40').style.backgroundColor = shadeCalc(color, 0.4);
+    document.getElementById('shadow-30').style.backgroundColor = shadeCalc(color, 0.3);
+}
+
+function hexToRgb(hex) {
+    // hex 코드가 '#' 문자로 시작하는지 확인
+    hex = hex.replace(/^#/, '');
+
+    // hex 코드의 유효성을 확인하고, 3자리 코드를 6자리로 확장
+    if (hex.length === 3) {
+        hex = hex.split('').map(char => char + char).join('');
+    }
+    // 16진수를 10진수로 변환하여 RGB 값을 추출
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
+
+    return { r, g, b };
+}
+
 // 사이드바 색깔 선택 이벤트 함수
 function colorPickerEvent() {
-    const selectedColor = document.getElementById('selected-color');
-    const colorPicker = document.getElementById('color-picker');
-    const opacityButton = document.querySelector('.opacity');
-    
-    // 선택한 색상을 selected-color에 반영하는 함수
-    function setSelectedColor(color) {
-        selectedColor.style.backgroundColor = color;
-    }
-    
-    // color-picker를 표시하거나 숨기는 함수
-    function toggleColorPicker() {
-        if (colorPicker.style.display === 'block') {
-            colorPicker.style.display = 'none';
-        } else {
-            colorPicker.style.display = 'block';
-        }
-    }
-
-    function toggleopacityButton(){
-        if (opacityButton.style.display === 'flex') {
-        } else {
-            opacityButton.style.display = 'flex';
-        }
-    }
-    // selected-color를 클릭했을 때 color-picker를 표시하거나 숨김
-    selectedColor.addEventListener('click', () => {
-        toggleColorPicker();
-        toggleopacityButton();} 
-    );
 
     // 각 색상 옵션을 클릭했을 때의 동작
     const colorOptions = document.querySelectorAll('.color-option');
@@ -172,22 +218,32 @@ function colorPickerEvent() {
         option.addEventListener('click', () => {
             const color = option.id;
             setSelectedColor(color);
-            toggleColorPicker();
-            toggleopacityButton();
-            colorEffect(color)
+            setShadowColor(color);
+            colorEffect(color);
         });
     });
-    // 페이지 로드 후 color-picker를 숨김
-    colorPicker.style.display = 'none';
-    selectedColor.style.display = 'none';
-    opacityButton.style.display = 'none';
+}
+
+// 사이드바 명암 선택 이벤트 함수
+function colorShadowEvent() {
+    const colorShadowOptions = document.querySelectorAll('.shadow-option');
+    colorShadowOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            const color = option.style.backgroundColor;
+            const id = option.id
+            setSelectedColor(color);
+            colorEffectShadow(color, id);
+        })
+    })
 }
 
 // 함수 실행 부분들
 document.addEventListener('DOMContentLoaded', () => {
+    setShadowColor("green");
     updateTime();
     setInterval(updateTime, 1000);
     generateDaysForMonth(new Date().getFullYear()); //초기에는 한국어로 설정
     appendSelected();
     colorPickerEvent();
+    colorShadowEvent();
 });
