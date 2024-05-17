@@ -59,6 +59,13 @@
                     <div class="shadow-option" id="shadow-40"></div>
                     <div class="shadow-option" id="shadow-30"></div>
                 </div>
+                <button id="reset-color" class="reset-button">색칠 삭제</button>    
+
+
+                <div name="memo">
+                    <textarea class="input" rows="10" cols="10" onclick="this.value='';">메모</textarea>
+                    <button class="submit", id="textbutton">저장</button>
+                </div>
             </div>
 
 
