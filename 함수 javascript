@@ -64,6 +64,8 @@ function appendSelected() {
     // 각 날짜 요소에 이벤트 리스너 추가
     const days = document.querySelectorAll('.day');
     const sidebar = document.getElementById('select-day'); // sidebar 요소 선택
+    const memoTextarea = document.querySelector('.input'); // memo textarea 요소 선택
+
     days.forEach(day => {
         day.addEventListener('click', () => {
 
@@ -73,12 +75,18 @@ function appendSelected() {
             }
             selectedDay = day;
             selectedDay.classList.add('selected');
+            
             // sidebar에 선택한 날짜 추가
             const monthName = selectedDay.parentElement.parentElement.querySelector('.month-name').textContent;
-            sidebar.textContent = `${monthName} ${selectedDay.textContent}일`;
+            const selectedDate = `${monthName} ${selectedDay.textContent}일`;
+            sidebar.textContent = selectedDate;
+
+            // memo textarea에 선택한 날짜 추가
         });
     });
 }
+
+
 
 // 현재 시간 나타내는 함수
 function updateTime() {
@@ -236,14 +244,60 @@ function colorShadowEvent() {
         })
     })
 }
+// '색칠 삭제' 버튼 클릭 이벤트 함수
+function resetColorEvent() {
+    const resetButton = document.getElementById('reset-color');
+    resetButton.addEventListener('click', () => {
+        // 선택된 날짜 요소 찾기
+        const selectedDay = document.querySelector('.day.selected');
+
+        // 선택된 날짜가 있을 경우 색상 초기화
+        if (selectedDay) {
+            selectedDay.classList.remove('color-effect');
+            selectedDay.style.backgroundColor = ''; // 배경색 초기화
+            selectedDay.dataset.constant = ''; // 데이터 초기화
+        }
+    });
+}
+
+function saveTextButton() {
+    const saveButton = document.getElementById('textbutton');
+    const memoTextarea = document.querySelector('.input')
+    const selectedDay = document.getElementById('select-day');
+
+    saveButton.addEventListener('click', () => {
+        const note = memoTextarea.value;
+        localStorage.setItem(selectedDay.textContent, note)
+    })
+}
+
+function dayClickEvent() {
+    const allDays = document.querySelectorAll('.day');
+
+    allDays.forEach(day => {
+        day.addEventListener('click', () => {
+            if (day.classList.contains('selected')) {
+                const memoTextarea = document.querySelector('.input');
+                const selectedDay = document.getElementById('select-day');
+                const savedNote = localStorage.getItem(selectedDay.textContent)
+                
+                memoTextarea.value = savedNote;
+            }
+        })
+    })
+}
+
 
 // 함수 실행 부분들
 document.addEventListener('DOMContentLoaded', () => {
     setShadowColor("green");
     updateTime();
     setInterval(updateTime, 1000);
-    generateDaysForMonth(new Date().getFullYear()); //초기에는 한국어로 설정
+    generateDaysForMonth(new Date().getFullYear()); // 초기에는 한국어로 설정
     appendSelected();
     colorPickerEvent();
     colorShadowEvent();
+    resetColorEvent();
+    dayClickEvent()
+    saveTextButton()
 });
