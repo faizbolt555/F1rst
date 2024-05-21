@@ -1,7 +1,30 @@
 import java.util.Scanner;
 public class MyStudent
 {
-    
+
+    // 등급 판별 함수
+     public static String getGrade(int score){
+        if(score >= 95){
+            return "A+";
+        } else if (score >= 90) {
+            return "A";
+        }else if (score >= 85) {
+            return "B+";
+        }else if (score >= 80) {
+            return "B";
+        }else if (score >= 75) {
+            return "C+";
+        }else if (score >= 70) {
+            return "C";
+        }else if (score >= 65) {
+            return "D+";
+        }else if (score >= 60) {
+            return "D";
+        } else {
+            return "F";
+        }
+    }
+
      // 개인별 성적 출력 함수
     public static void PersonalCard(Student student) {
     System.out.println("=====================");
